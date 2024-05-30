@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Band map &mdash; xARPES 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Distributions" href="distributions.html" />
+    <link rel="prev" title="Installation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/xarpes_small.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Band map</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xarpes.band_map.band_map"><code class="docutils literal notranslate"><span class="pre">band_map</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.band_map.band_map.fit_fermi_edge"><code class="docutils literal notranslate"><span class="pre">band_map.fit_fermi_edge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.band_map.band_map.hnuminphi"><code class="docutils literal notranslate"><span class="pre">band_map.hnuminphi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.band_map.band_map.shift_angles"><code class="docutils literal notranslate"><span class="pre">band_map.shift_angles()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">xARPES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Band map</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/band_map.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-xarpes.band_map">
+<span id="band-map"></span><h1>Band map<a class="headerlink" href="#module-xarpes.band_map" title="Link to this heading"></a></h1>
+<p>The band map class and allowed operations on it.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="xarpes.band_map.band_map">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xarpes.band_map.</span></span><span class="sig-name descname"><span class="pre">band_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ekin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hnuminphi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/band_map.html#band_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.band_map.band_map" title="Link to this definition"></a></dt>
+<dd><p>Class for the band map from the ARPES experiment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intensities</strong> (<em>ndarray</em>) – 2D array of counts for given (E,k) or (E,angle) pairs [counts]</p></li>
+<li><p><strong>angles</strong> (<em>ndarray</em>) – 1D array of angular values for the abscissa [degrees]</p></li>
+<li><p><strong>ekin</strong> (<em>ndarray</em>) – 1D array of kinetic energy values for the ordinate [eV]</p></li>
+<li><p><strong>energy_resolution</strong> (<em>float</em>) – Energy resolution of the detector [eV]</p></li>
+<li><p><strong>temperature</strong> (<em>float</em>) – Temperature of the sample [K]</p></li>
+<li><p><strong>hnuminphi</strong> (<em>float</em>) – Kinetic energy minus the work function [eV]</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xarpes.band_map.band_map.fit_fermi_edge">
+<span class="sig-name descname"><span class="pre">fit_fermi_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hnuminphi_guess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integrated_weight_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ekin_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ekin_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/band_map.html#band_map.fit_fermi_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.band_map.band_map.fit_fermi_edge" title="Link to this definition"></a></dt>
+<dd><p>Fits the Fermi edge of the band map and plots the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hnuminphi_guess</strong> (<em>float</em>) – Initial guess for kinetic energy minus the work function [eV]</p></li>
+<li><p><strong>background_guess</strong> (<em>float</em>) – Initial guess for background intensity [counts]</p></li>
+<li><p><strong>integrated_weight_guess</strong> (<em>float</em>) – Initial guess for integrated spectral intensity [counts]</p></li>
+<li><p><strong>angle_min</strong> (<em>float</em>) – Minimum angle of integration interval [degrees]</p></li>
+<li><p><strong>angle_max</strong> (<em>float</em>) – Maximum angle of integration interval [degrees]</p></li>
+<li><p><strong>ekin_min</strong> (<em>float</em>) – Minimum kinetic energy of integration interval [eV]</p></li>
+<li><p><strong>ekin_max</strong> (<em>float</em>) – Maximum kinetic energy of integration interval [eV]</p></li>
+<li><p><strong>ax</strong> (<em>Matplotlib-Axes / NoneType</em>) – Axis for plotting the Fermi edge on. Created if not provided by
+the user.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional arguments passed on to add_fig_kwargs. See the keyword
+table below.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Matplotlib-Figure</p>
+</dd>
+</dl>
+<p>Keyword arguments controlling the display of the figure:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>kwargs</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>title</p></td>
+<td><p>Title of the plot (Default: None).</p></td>
+</tr>
+<tr class="row-odd"><td><p>show</p></td>
+<td><p>True to show the figure (default: True).</p></td>
+</tr>
+<tr class="row-even"><td><p>savefig</p></td>
+<td><p>“abc.png” or “abc.eps” to save the figure to a file.</p></td>
+</tr>
+<tr class="row-odd"><td><p>size_kwargs</p></td>
+<td><p>Dictionary with options passed to fig.set_size_inches
+e.g. size_kwargs=dict(w=3, h=4)</p></td>
+</tr>
+<tr class="row-even"><td><p>tight_layout</p></td>
+<td><p>True to call fig.tight_layout (default: False)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ax_grid</p></td>
+<td><p>True (False) to add (remove) grid from all axes in fig.
+Default: None i.e. fig is left unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>ax_annotate</p></td>
+<td><p>Add labels to  subplots e.g. (a), (b).
+Default: False</p></td>
+</tr>
+<tr class="row-odd"><td><p>fig_close</p></td>
+<td><p>Close figure. Default: False.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.band_map.band_map.hnuminphi">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hnuminphi</span></span><a class="headerlink" href="#xarpes.band_map.band_map.hnuminphi" title="Link to this definition"></a></dt>
+<dd><p>Returns the photon energy minus the work function in eV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hnuminphi</strong> – Kinetic energy minus the work function [eV]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xarpes.band_map.band_map.shift_angles">
+<span class="sig-name descname"><span class="pre">shift_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shift</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/band_map.html#band_map.shift_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.band_map.band_map.shift_angles" title="Link to this definition"></a></dt>
+<dd><p>Shifts the angles by the specified amount in degrees. Used to shift
+from the detector angle to the material angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shift</strong> (<em>float</em>) – Angular shift [degrees]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="distributions.html" class="btn btn-neutral float-right" title="Distributions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 xARPES Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

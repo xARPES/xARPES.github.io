@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; xARPES 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Band map" href="modules/band_map.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#">
+            
+              <img src="_static/xarpes_small.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/band_map.html">Band map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/plotting.html">Plotting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">xARPES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><img alt="xARPES" src="https://xarpes.github.io/_images/xarpes.svg" /></p>
+<p>Repository for the code xARPES – extraction from angle resolved photoemission spectra.</p>
+<p>This preliminary release can only be used to fit a Fermi edge. The complete functionality will be made available soon.</p>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<p>xARPES can be installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    python3 -m pip install xarpes
+</pre></div>
+</div>
+<p>Or with <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    conda install conda-forge::xarpes
+</pre></div>
+</div>
+<p>More detailed instructions for installing the development version, tested for recent Ubuntu and Debian GNU/Linux, are provided below.</p>
+<section id="pip">
+<h2>pip<a class="headerlink" href="#pip" title="Link to this heading"></a></h2>
+<p>It is highly recommended to set up a pristine Python virtual environment. First, the <code class="docutils literal notranslate"><span class="pre">venv</span></code> module might have to be installed:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    sudo apt install python3-venv
+</pre></div>
+</div>
+<p>Afterwards, one can activate a virtual environment named <code class="docutils literal notranslate"><span class="pre">&lt;my_venv&gt;</span></code> using:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    python3 -m venv &lt;my_venv&gt;
+</pre></div>
+</div>
+<p>It has to be activated whenever installing/running xARPES:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    source &lt;my_venv&gt;/bin/activate
+</pre></div>
+</div>
+<p>It is recommended to upgrade <code class="docutils literal notranslate"><span class="pre">pip</span></code> to the latest version:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    python3 -m pip install --upgrade pip
+</pre></div>
+</div>
+<p>Finally, the installation can be performed:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    git clone git@github.com:xARPES/xARPES.git
+    cd xARPES
+    python3 -m pip install -e .
+</pre></div>
+</div>
+</section>
+<section id="conda">
+<h2>conda<a class="headerlink" href="#conda" title="Link to this heading"></a></h2>
+<p>The user is assumed to be in a pristine virtual environment provided by conda. First, download the required version for your operating system from <a class="reference external" href="https://docs.anaconda.com/free/miniconda/">https://docs.anaconda.com/free/miniconda/</a>. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>Start the installation:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    bash Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>Then scroll down the license agreement and answer <code class="docutils literal notranslate"><span class="pre">yes</span></code> to the following question:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    Do you accept the license terms? [yes|no]
+</pre></div>
+</div>
+<p>Also specify your installation location.</p>
+<p>It is convenient to also answer <code class="docutils literal notranslate"><span class="pre">yes</span></code> to the following, which will append new lines to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    You can undo this by running `conda init --reverse $SHELL`? [yes|no]
+</pre></div>
+</div>
+<p>A conda base environment is then activated with <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bashrc</span></code> or by starting a new terminal session.</p>
+<p>Alternatively, you can answer <code class="docutils literal notranslate"><span class="pre">no</span></code> to the above question and activate conda whenever you need it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    eval &quot;$(&lt;your_path&gt;/miniconda3/bin/conda shell.&lt;your_shell&gt; hook)&quot;
+</pre></div>
+</div>
+<p>Next, we install <code class="docutils literal notranslate"><span class="pre">conda-build</span></code> for developing xARPES (answer <code class="docutils literal notranslate"><span class="pre">y</span></code> to questions):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    conda install conda-build
+</pre></div>
+</div>
+<p>Finally, the following steps are executed for the installation – the <code class="docutils literal notranslate"><span class="pre">&lt;my_env&gt;</span></code> environment will have to be launched whenever running xARPES:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    git clone git@github.com:xARPES/xARPES.git
+    cd xARPES
+    conda create -n &lt;my_env&gt; -c defaults -c conda-forge --file requirements.txt
+    conda activate &lt;my_env&gt;
+    conda develop .
+</pre></div>
+</div>
+<p>Answer <code class="docutils literal notranslate"><span class="pre">y</span></code> to questions.</p>
+</section>
+</section>
+<section id="execution">
+<h1>Execution<a class="headerlink" href="#execution" title="Link to this heading"></a></h1>
+<p>It is recommended to use JupyterLab to analyse data. JupyterLab is launched using:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    jupyter lab
+</pre></div>
+</div>
+</section>
+<section id="license">
+<h1>License<a class="headerlink" href="#license" title="Link to this heading"></a></h1>
+<p>Copyright (C) 2024 xARPES Developers</p>
+<p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 2, as published by the Free Software Foundation.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+</section>
+<section id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/band_map.html">Band map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/plotting.html">Plotting</a></li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules/band_map.html" class="btn btn-neutral float-right" title="Band map" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 xARPES Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
