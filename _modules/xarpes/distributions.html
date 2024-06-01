@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xarpes.distributions &mdash; xARPES 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/xarpes_small.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/band_map.html">Band map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/plotting.html">Plotting</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">xARPES</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">xarpes.distributions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for xarpes.distributions</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) 2024 xARPES Developers</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv2 license.</span>
+
+<span class="sd">&quot;&quot;&quot;The distributions used throughout the code.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="distribution">
+<a class="viewcode-back" href="../../modules/distributions.html#xarpes.distributions.distribution">[docs]</a>
+<span class="k">class</span> <span class="nc">distribution</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Parent class for distributions. The class cannot be used on its own, </span>
+<span class="sd">    but is used to instantiate unique and non-unique distributions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Non-unique name for instances, not to be modified after instantiation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the name of the class instance.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Non-unique name for instances, not to be modified after instantiation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span></div>
+
+
+
+<div class="viewcode-block" id="unique_distribution">
+<a class="viewcode-back" href="../../modules/distributions.html#xarpes.distributions.unique_distribution">[docs]</a>
+<span class="k">class</span> <span class="nc">unique_distribution</span><span class="p">(</span><span class="n">distribution</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Parent class for unique distributions, to be used one at a time, e.g.,</span>
+<span class="sd">    during the background of an MDC fit or the Fermi-Dirac distribution.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    label : str</span>
+<span class="sd">        Unique label for instances, identical to the name for unique</span>
+<span class="sd">        distributions. Not to be modified after instantiation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the unique class label.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        label : str</span>
+<span class="sd">            Unique label for instances, identical to the name for unique</span>
+<span class="sd">            distributions. Not to be modified after instantiation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label</span></div>
+
+
+
+<div class="viewcode-block" id="constant">
+<a class="viewcode-back" href="../../modules/distributions.html#xarpes.distributions.constant">[docs]</a>
+<span class="k">class</span> <span class="nc">constant</span><span class="p">(</span><span class="n">unique_distribution</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Child class for constant distributions, used e.g., during MDC fitting.</span>
+<span class="sd">    The constant class is unique, only one instance should be used per task.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    offset : float</span>
+<span class="sd">        The value of the distribution for the abscissa equal to 0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="n">offset</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the offset of the constant distribution.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        offset : float</span>
+<span class="sd">            The value of the distribution for the abscissa equal to 0.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span>
+
+    <span class="nd">@offset</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">set_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the offset of the constant distribution.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        offset : float</span>
+<span class="sd">            The value of the distribution for the abscissa equal to 0.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="n">x</span></div>
+
+
+
+<div class="viewcode-block" id="linear">
+<a class="viewcode-back" href="../../modules/distributions.html#xarpes.distributions.linear">[docs]</a>
+<span class="k">class</span> <span class="nc">linear</span><span class="p">(</span><span class="n">unique_distribution</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Child cass for for linear distributions, used e.g., during MDC fitting.</span>
+<span class="sd">    The constant class is unique, only one instance should be used per task.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    offset : float</span>
+<span class="sd">        The value of the distribution for the abscissa equal to 0.</span>
+<span class="sd">    slope : float</span>
+<span class="sd">        The linear slope of the distribution w.r.t. the abscissa.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slope</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_slope</span> <span class="o">=</span> <span class="n">slope</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the offset of the linear distribution.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        offset : float</span>
+<span class="sd">            The value of the distribution for the abscissa equal to 0.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span>
+
+    <span class="nd">@offset</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">set_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the offset of the linear distribution.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        offset : float</span>
+<span class="sd">            The value of the distribution for the abscissa equal to 0.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">slope</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the slope of the linear distribution.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        slope : float</span>
+<span class="sd">            The linear slope of the distribution w.r.t. the abscissa.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slope</span>
+
+    <span class="nd">@slope</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">set_slope</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the slope of the linear distribution.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        slope : float</span>
+<span class="sd">            The linear slope of the distribution w.r.t. the abscissa.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_slope</span> <span class="o">=</span> <span class="n">x</span></div>
+
+
+
+<div class="viewcode-block" id="fermi_dirac">
+<a class="viewcode-back" href="../../modules/distributions.html#xarpes.distributions.fermi_dirac">[docs]</a>
+<span class="k">class</span> <span class="nc">fermi_dirac</span><span class="p">(</span><span class="n">unique_distribution</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Child class for Fermi-Dirac (FD) distributions, used e.g., during Fermi edge</span>
+<span class="sd">    fitting. The FD class is unique, only one instance should be used</span>
+<span class="sd">    per task.</span>
+
+<span class="sd">    The Fermi-Dirac distribution is described by the following formula:</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+
+<span class="sd">            \frac{A}{\rm{e}^{\beta(E_{\rm{kin}}-(h\nu-\Phi))}+1} + B</span>
+
+<span class="sd">    with :math:`A` as :attr:`integrated_weight`, :math:`B` as :attr:`background`,</span>
+<span class="sd">    :math:`h\nu-\Phi` as :attr:`hnuminphi`, and :math:`\beta=1/(k_{\rm{B}}T)` with</span>
+<span class="sd">    :math:`T` as :attr:`temperature`.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    temperature : float</span>
+<span class="sd">        Temperature of the sample [K]</span>
+<span class="sd">    hnuminphi : float</span>
+<span class="sd">        Kinetic energy minus the work function [eV]</span>
+<span class="sd">    background : float</span>
+<span class="sd">        Background spectral weight [counts]</span>
+<span class="sd">    integrated_weight : float</span>
+<span class="sd">        Integrated weight on top of the background [counts]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">hnuminphi</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">integrated_weight</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fermi_dirac&#39;</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">temperature</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hnuminphi</span> <span class="o">=</span> <span class="n">hnuminphi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">background</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrated_weight</span> <span class="o">=</span> <span class="n">integrated_weight</span>
+
+        <span class="nd">@property</span>
+        <span class="k">def</span> <span class="nf">temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the temperature of the sample.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            temperature : float</span>
+<span class="sd">                Temperature of the sample [K]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_temperature</span>
+
+        <span class="nd">@temperature</span><span class="o">.</span><span class="n">setter</span>
+        <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">            </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the temperature of the FD distribution.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            temperature : float</span>
+<span class="sd">                Temperature of the sample [K]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_temperature</span> <span class="o">=</span> <span class="n">x</span>
+
+        <span class="nd">@property</span>
+        <span class="k">def</span> <span class="nf">hnuminphi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the photon energy minus the work function of the FD distribution.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            hnuminphi: float</span>
+<span class="sd">                Kinetic energy minus the work function [eV]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi</span>
+
+        <span class="nd">@hnuminphi</span><span class="o">.</span><span class="n">setter</span>
+        <span class="k">def</span> <span class="nf">set_hnuminphi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">            </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the photon energy minus the work function of the FD distribution.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            hnuminphi : float</span>
+<span class="sd">                Kinetic energy minus the work function [eV]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi</span> <span class="o">=</span> <span class="n">x</span>
+
+        <span class="nd">@property</span>
+        <span class="k">def</span> <span class="nf">background</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the background intensity of the FD distribution.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            background : float</span>
+<span class="sd">                Background spectral weight [counts]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_background</span>
+
+        <span class="nd">@background</span><span class="o">.</span><span class="n">setter</span>
+        <span class="k">def</span> <span class="nf">set_background</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">            </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the background intensity of the FD distribution.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            background : float</span>
+<span class="sd">                Background spectral weight [counts]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_background</span> <span class="o">=</span> <span class="n">x</span>
+
+        <span class="nd">@property</span>
+        <span class="k">def</span> <span class="nf">integrated_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the integrated weight of the FD distribution.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            integrated_weight: float</span>
+<span class="sd">                Integrated weight on top of the background [counts]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrated_weight</span>
+
+        <span class="nd">@integrated_weight</span><span class="o">.</span><span class="n">setter</span>
+        <span class="k">def</span> <span class="nf">set_integrated_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">            </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sets the integrated weight of the FD distribution.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            integrated_weight : float</span>
+<span class="sd">                Integrated weight on top of the background [counts]</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_integrated_weight</span> <span class="o">=</span> <span class="n">x</span>
+    
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">energy_range</span><span class="p">,</span> <span class="n">hnuminphi</span><span class="p">,</span> <span class="n">background</span><span class="p">,</span> <span class="n">integrated_weight</span><span class="p">,</span>
+                 <span class="n">energy_resolution</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call method to directly evaluate a FD distribution without having to</span>
+<span class="sd">        instantiate a class instance.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        energy_range : ndarray</span>
+<span class="sd">            1D array on which to evaluate the FD distribution [eV]</span>
+<span class="sd">        hnuminphi : float</span>
+<span class="sd">            Kinetic energy minus the work function [eV]</span>
+<span class="sd">        background : float</span>
+<span class="sd">            Background spectral weight [counts]</span>
+<span class="sd">        integrated_weight : float</span>
+<span class="sd">            Integrated weight on top of the background [counts]</span>
+<span class="sd">        energy_resolution : float</span>
+<span class="sd">            Energy resolution of the detector for the convolution [eV]</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        evalf : ndarray</span>
+<span class="sd">            1D array of the energy-convolved FD distribution [counts]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+        <span class="n">sigma_extend</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Extend data range by &quot;5 sigma&quot;</span>
+        <span class="c1"># Conversion from FWHM to standard deviation [-]</span>
+        <span class="n">fwhm_to_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">k_B</span> <span class="o">=</span> <span class="mf">8.617e-5</span> <span class="c1"># Boltzmann constant [eV/K]</span>
+        <span class="n">k_BT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">*</span> <span class="n">k_B</span>
+        <span class="n">step_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">energy_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">energy_range</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">estep</span> <span class="o">=</span> <span class="n">energy_resolution</span> <span class="o">/</span> <span class="p">(</span><span class="n">step_size</span> <span class="o">*</span> <span class="n">fwhm_to_std</span><span class="p">)</span>
+        <span class="n">enumb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sigma_extend</span> <span class="o">*</span> <span class="n">estep</span><span class="p">)</span>
+        <span class="n">extend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">energy_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">enumb</span> <span class="o">*</span> <span class="n">step_size</span><span class="p">,</span>
+                             <span class="n">energy_range</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">enumb</span> <span class="o">*</span> <span class="n">step_size</span><span class="p">,</span>
+                             <span class="nb">len</span><span class="p">(</span><span class="n">energy_range</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">enumb</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">integrated_weight</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">extend</span> <span class="o">-</span> <span class="n">hnuminphi</span><span class="p">)</span> <span class="o">/</span> <span class="n">k_BT</span><span class="p">))</span>
+            <span class="o">+</span> <span class="n">background</span><span class="p">)</span>
+        <span class="n">evalf</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">estep</span><span class="p">)[</span><span class="n">enumb</span><span class="p">:</span><span class="o">-</span><span class="n">enumb</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">evalf</span>
+
+<div class="viewcode-block" id="fermi_dirac.evaluate">
+<a class="viewcode-back" href="../../modules/distributions.html#xarpes.distributions.fermi_dirac.evaluate">[docs]</a>
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">energy_range</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Evaluates the FD distribution for a given class instance.</span>
+<span class="sd">        No energy convolution is performed with evaluate.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        energy_range : ndarray</span>
+<span class="sd">            1D array on which to evaluate the FD distribution [eV]</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        evalf : ndarray</span>
+<span class="sd">            1D array of the evaluated FD distribution [counts]</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+        <span class="n">k_B</span> <span class="o">=</span> <span class="mf">8.617e-5</span> <span class="c1"># Boltzmann constant [eV/K]</span>
+        <span class="n">k_BT</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">*</span> <span class="n">k_B</span>
+        <span class="n">evalf</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrated_weight</span>
+            <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">energy_range</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">hnuminphi</span><span class="p">)</span> <span class="o">/</span> <span class="n">k_BT</span><span class="p">))</span>
+            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">background</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">evalf</span></div>
+
+
+<div class="viewcode-block" id="fermi_dirac.convolve">
+<a class="viewcode-back" href="../../modules/distributions.html#xarpes.distributions.fermi_dirac.convolve">[docs]</a>
+    <span class="k">def</span> <span class="nf">convolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">energy_range</span><span class="p">,</span> <span class="n">energy_resolution</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Evaluates the FD distribution for a given class instance and</span>
+<span class="sd">        performs the energy convolution with the given resolution. The</span>
+<span class="sd">        convolution is performed with an expanded abscissa range of 5</span>
+<span class="sd">        times the standard deviation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        energy_range : ndarray</span>
+<span class="sd">            1D array on which to evaluate and convolve FD distribution [eV]</span>
+<span class="sd">        energy_resolution : float</span>
+<span class="sd">            Energy resolution of the detector for the convolution [eV]</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        evalf : ndarray</span>
+<span class="sd">            1D array of the energy-convolved FD distribution [counts]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+        <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+        <span class="n">sigma_extend</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Extend data range by &quot;5 sigma&quot;</span>
+        <span class="c1"># Conversion from FWHM to standard deviation [-]</span>
+        <span class="n">fwhm_to_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">step_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">energy_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">energy_range</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">estep</span> <span class="o">=</span> <span class="n">energy_resolution</span> <span class="o">/</span> <span class="p">(</span><span class="n">step_size</span> <span class="o">*</span> <span class="n">fwhm_to_std</span><span class="p">)</span>
+        <span class="n">enumb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sigma_extend</span> <span class="o">*</span> <span class="n">estep</span><span class="p">)</span>
+        <span class="n">extend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">energy_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">enumb</span> <span class="o">*</span> <span class="n">step_size</span><span class="p">,</span>
+                             <span class="n">energy_range</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">enumb</span> <span class="o">*</span> <span class="n">step_size</span><span class="p">,</span>
+                             <span class="nb">len</span><span class="p">(</span><span class="n">energy_range</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">enumb</span><span class="p">)</span>
+        <span class="n">evalf</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">extend</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="n">estep</span><span class="p">)[</span><span class="n">enumb</span><span class="p">:</span><span class="o">-</span><span class="n">enumb</span><span class="p">]</span> 
+        <span class="k">return</span> <span class="n">evalf</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 xARPES Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

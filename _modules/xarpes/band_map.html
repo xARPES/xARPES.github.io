@@ -15,7 +15,7 @@
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../../_static/documentation_options.js?v=01f34227"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -94,6 +94,7 @@
 <span class="kn">from</span> <span class="nn">.plotting</span> <span class="kn">import</span> <span class="n">get_ax_fig_plt</span><span class="p">,</span> <span class="n">add_fig_kwargs</span>
 <span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">fermi_dirac</span>
 
+
 <div class="viewcode-block" id="band_map">
 <a class="viewcode-back" href="../../modules/band_map.html#xarpes.band_map.band_map">[docs]</a>
 <span class="k">class</span> <span class="nc">band_map</span><span class="p">():</span>
@@ -109,10 +110,10 @@
 <span class="sd">        1D array of kinetic energy values for the ordinate [eV]</span>
 <span class="sd">    energy_resolution : float</span>
 <span class="sd">        Energy resolution of the detector [eV]</span>
-<span class="sd">    temperature : float</span>
+<span class="sd">    temperature : float, None</span>
 <span class="sd">        Temperature of the sample [K]</span>
-<span class="sd">    hnuminphi : float</span>
-<span class="sd">        Kinetic energy minus the work function [eV]</span>
+<span class="sd">    hnuminphi : float, None</span>
+<span class="sd">        Kinetic energy minus the work function [eV]      </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intensities</span><span class="p">,</span> <span class="n">angles</span><span class="p">,</span> <span class="n">ekin</span><span class="p">,</span> <span class="n">energy_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">temperature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hnuminphi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -126,25 +127,28 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">hnuminphi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the photon energy minus the work function in eV.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the photon energy minus the work function in eV if it has</span>
+<span class="sd">        been set, either during instantiation, with the setter, or by fitting</span>
+<span class="sd">        the Fermi-Dirac distribution to the integrated weight.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        hnuminphi : float</span>
+<span class="sd">        hnuminphi : float, None </span>
 <span class="sd">            Kinetic energy minus the work function [eV]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi</span>
 
     <span class="nd">@hnuminphi</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">hnuminphi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hnuminphi</span><span class="p">):</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Manually sets the photon energy minus the work function in eV.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Manually sets the photon energy minus the work function in eV if it</span>
+<span class="sd">        has been set; otherwise returns None.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        hnuminphi : float</span>
+<span class="sd">        hnuminphi : float, None</span>
 <span class="sd">            Kinetic energy minus the work function [eV]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi</span> <span class="o">=</span> <span class="n">hnuminphi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi</span> <span class="o">=</span> <span class="n">hnuminphi</span>        
 
 <div class="viewcode-block" id="band_map.shift_angles">
 <a class="viewcode-back" href="../../modules/band_map.html#xarpes.band_map.band_map.shift_angles">[docs]</a>
@@ -170,6 +174,9 @@
                        <span class="n">ekin_max</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">infty</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fits the Fermi edge of the band map and plots the result.</span>
+<span class="sd">        Also sets hnuminphi, the kinetic energy minus the work function in eV.</span>
+<span class="sd">        The fitting includes an energy convolution with an abscissa range</span>
+<span class="sd">        expanded by 5 times the energy resolution standard deviation.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -190,14 +197,18 @@
 <span class="sd">        ax : Matplotlib-Axes / NoneType</span>
 <span class="sd">            Axis for plotting the Fermi edge on. Created if not provided by</span>
 <span class="sd">            the user.</span>
+
+<span class="sd">        Other parameters</span>
+<span class="sd">        ----------------   </span>
 <span class="sd">        **kwargs : dict, optional</span>
 <span class="sd">            Additional arguments passed on to add_fig_kwargs. See the keyword</span>
 <span class="sd">            table below.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Matplotlib-Figure</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        fig : Matplotlib-Figure</span>
+<span class="sd">            Figure containing the Fermi edge fit            </span>
+<span class="sd">        &quot;&quot;&quot;</span>        
         <span class="kn">from</span> <span class="nn">xarpes.functions</span> <span class="kn">import</span> <span class="n">fit_leastsq</span>
 
         <span class="n">ax</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">plt</span> <span class="o">=</span> <span class="n">get_ax_fig_plt</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>

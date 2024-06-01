@@ -16,8 +16,9 @@
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=01f34227"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -50,7 +51,34 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="band_map.html">Band map</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xarpes.distributions.distribution"><code class="docutils literal notranslate"><span class="pre">distribution</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.distribution.name"><code class="docutils literal notranslate"><span class="pre">distribution.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#xarpes.distributions.unique_distribution"><code class="docutils literal notranslate"><span class="pre">unique_distribution</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.unique_distribution.label"><code class="docutils literal notranslate"><span class="pre">unique_distribution.label</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#xarpes.distributions.constant"><code class="docutils literal notranslate"><span class="pre">constant</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.constant.offset"><code class="docutils literal notranslate"><span class="pre">constant.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.constant.set_offset"><code class="docutils literal notranslate"><span class="pre">constant.set_offset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#xarpes.distributions.linear"><code class="docutils literal notranslate"><span class="pre">linear</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.linear.offset"><code class="docutils literal notranslate"><span class="pre">linear.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.linear.set_offset"><code class="docutils literal notranslate"><span class="pre">linear.set_offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.linear.slope"><code class="docutils literal notranslate"><span class="pre">linear.slope</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.linear.set_slope"><code class="docutils literal notranslate"><span class="pre">linear.set_slope</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#xarpes.distributions.fermi_dirac"><code class="docutils literal notranslate"><span class="pre">fermi_dirac</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.fermi_dirac.evaluate"><code class="docutils literal notranslate"><span class="pre">fermi_dirac.evaluate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.distributions.fermi_dirac.convolve"><code class="docutils literal notranslate"><span class="pre">fermi_dirac.convolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
 </ul>
@@ -82,6 +110,256 @@
   <section id="module-xarpes.distributions">
 <span id="distributions"></span><h1>Distributions<a class="headerlink" href="#module-xarpes.distributions" title="Link to this heading"></a></h1>
 <p>The distributions used throughout the code.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="xarpes.distributions.distribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xarpes.distributions.</span></span><span class="sig-name descname"><span class="pre">distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.distribution" title="Link to this definition"></a></dt>
+<dd><p>Parent class for distributions. The class cannot be used on its own, 
+but is used to instantiate unique and non-unique distributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Non-unique name for instances, not to be modified after instantiation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.distributions.distribution.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#xarpes.distributions.distribution.name" title="Link to this definition"></a></dt>
+<dd><p>Returns the name of the class instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Non-unique name for instances, not to be modified after instantiation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="xarpes.distributions.unique_distribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xarpes.distributions.</span></span><span class="sig-name descname"><span class="pre">unique_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#unique_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.unique_distribution" title="Link to this definition"></a></dt>
+<dd><p>Parent class for unique distributions, to be used one at a time, e.g.,
+during the background of an MDC fit or the Fermi-Dirac distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label</strong><span class="classifier">str</span></dt><dd><p>Unique label for instances, identical to the name for unique
+distributions. Not to be modified after instantiation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.distributions.unique_distribution.label">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">label</span></span><a class="headerlink" href="#xarpes.distributions.unique_distribution.label" title="Link to this definition"></a></dt>
+<dd><p>Returns the unique class label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label</strong><span class="classifier">str</span></dt><dd><p>Unique label for instances, identical to the name for unique
+distributions. Not to be modified after instantiation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="xarpes.distributions.constant">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xarpes.distributions.</span></span><span class="sig-name descname"><span class="pre">constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#constant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.constant" title="Link to this definition"></a></dt>
+<dd><p>Child class for constant distributions, used e.g., during MDC fitting.
+The constant class is unique, only one instance should be used per task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>offset</strong><span class="classifier">float</span></dt><dd><p>The value of the distribution for the abscissa equal to 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.distributions.constant.offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#xarpes.distributions.constant.offset" title="Link to this definition"></a></dt>
+<dd><p>Returns the offset of the constant distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>offset</strong><span class="classifier">float</span></dt><dd><p>The value of the distribution for the abscissa equal to 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.distributions.constant.set_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_offset</span></span><a class="headerlink" href="#xarpes.distributions.constant.set_offset" title="Link to this definition"></a></dt>
+<dd><p>Returns the offset of the constant distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>offset</strong><span class="classifier">float</span></dt><dd><p>The value of the distribution for the abscissa equal to 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="xarpes.distributions.linear">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xarpes.distributions.</span></span><span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slope</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.linear" title="Link to this definition"></a></dt>
+<dd><p>Child cass for for linear distributions, used e.g., during MDC fitting.
+The constant class is unique, only one instance should be used per task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>offset</strong><span class="classifier">float</span></dt><dd><p>The value of the distribution for the abscissa equal to 0.</p>
+</dd>
+<dt><strong>slope</strong><span class="classifier">float</span></dt><dd><p>The linear slope of the distribution w.r.t. the abscissa.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.distributions.linear.offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#xarpes.distributions.linear.offset" title="Link to this definition"></a></dt>
+<dd><p>Returns the offset of the linear distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>offset</strong><span class="classifier">float</span></dt><dd><p>The value of the distribution for the abscissa equal to 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.distributions.linear.set_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_offset</span></span><a class="headerlink" href="#xarpes.distributions.linear.set_offset" title="Link to this definition"></a></dt>
+<dd><p>Returns the offset of the linear distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>offset</strong><span class="classifier">float</span></dt><dd><p>The value of the distribution for the abscissa equal to 0.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.distributions.linear.slope">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">slope</span></span><a class="headerlink" href="#xarpes.distributions.linear.slope" title="Link to this definition"></a></dt>
+<dd><p>Returns the slope of the linear distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>slope</strong><span class="classifier">float</span></dt><dd><p>The linear slope of the distribution w.r.t. the abscissa.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.distributions.linear.set_slope">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_slope</span></span><a class="headerlink" href="#xarpes.distributions.linear.set_slope" title="Link to this definition"></a></dt>
+<dd><p>Returns the slope of the linear distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>slope</strong><span class="classifier">float</span></dt><dd><p>The linear slope of the distribution w.r.t. the abscissa.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="xarpes.distributions.fermi_dirac">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xarpes.distributions.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hnuminphi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integrated_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fermi_dirac'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#fermi_dirac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.fermi_dirac" title="Link to this definition"></a></dt>
+<dd><p>Child class for Fermi-Dirac (FD) distributions, used e.g., during Fermi edge
+fitting. The FD class is unique, only one instance should be used
+per task.</p>
+<p>The Fermi-Dirac distribution is described by the following formula:</p>
+<div class="math notranslate nohighlight">
+\[\frac{A}{\rm{e}^{\beta(E_{\rm{kin}}-(h\nu-\Phi))}+1} + B\]</div>
+<p>with <span class="math notranslate nohighlight">\(A\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">integrated_weight</span></code>, <span class="math notranslate nohighlight">\(B\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">background</span></code>,
+<span class="math notranslate nohighlight">\(h\nu-\Phi\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">hnuminphi</span></code>, and <span class="math notranslate nohighlight">\(\beta=1/(k_{\rm{B}}T)\)</span> with
+<span class="math notranslate nohighlight">\(T\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">temperature</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>temperature</strong><span class="classifier">float</span></dt><dd><p>Temperature of the sample [K]</p>
+</dd>
+<dt><strong>hnuminphi</strong><span class="classifier">float</span></dt><dd><p>Kinetic energy minus the work function [eV]</p>
+</dd>
+<dt><strong>background</strong><span class="classifier">float</span></dt><dd><p>Background spectral weight [counts]</p>
+</dd>
+<dt><strong>integrated_weight</strong><span class="classifier">float</span></dt><dd><p>Integrated weight on top of the background [counts]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xarpes.distributions.fermi_dirac.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_range</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#fermi_dirac.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.fermi_dirac.evaluate" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the FD distribution for a given class instance.
+No energy convolution is performed with evaluate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>energy_range</strong><span class="classifier">ndarray</span></dt><dd><p>1D array on which to evaluate the FD distribution [eV]</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>evalf</strong><span class="classifier">ndarray</span></dt><dd><p>1D array of the evaluated FD distribution [counts]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xarpes.distributions.fermi_dirac.convolve">
+<span class="sig-name descname"><span class="pre">convolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_resolution</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#fermi_dirac.convolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.fermi_dirac.convolve" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the FD distribution for a given class instance and
+performs the energy convolution with the given resolution. The
+convolution is performed with an expanded abscissa range of 5
+times the standard deviation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>energy_range</strong><span class="classifier">ndarray</span></dt><dd><p>1D array on which to evaluate and convolve FD distribution [eV]</p>
+</dd>
+<dt><strong>energy_resolution</strong><span class="classifier">float</span></dt><dd><p>Energy resolution of the detector for the convolution [eV]</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>evalf</strong><span class="classifier">ndarray</span></dt><dd><p>1D array of the energy-convolved FD distribution [counts]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

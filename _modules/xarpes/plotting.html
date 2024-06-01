@@ -15,7 +15,7 @@
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../../_static/documentation_options.js?v=01f34227"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -94,7 +94,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 
-<span class="k">def</span> <span class="nf">my_plot_settings</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">plot_settings</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
     <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">)</span>
     <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">)</span>
     <span class="n">lw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">large</span><span class="o">=</span><span class="mf">4.0</span><span class="p">)[</span><span class="n">name</span><span class="p">]</span>
@@ -109,18 +109,27 @@
 <div class="viewcode-block" id="get_ax_fig_plt">
 <a class="viewcode-back" href="../../modules/plotting.html#xarpes.plotting.get_ax_fig_plt">[docs]</a>
 <span class="k">def</span> <span class="nf">get_ax_fig_plt</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Helper function used in plot functions supporting an optional Axes</span>
-<span class="sd">    argument. If ax is None, we build the `matplotlib` figure and create the</span>
-<span class="sd">    Axes else. We return the current active figure.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Helper function used in plot functions supporting an optional `Axes`</span>
+<span class="sd">    argument.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        ax (Axes, optional): Axes object. Defaults to None.</span>
-<span class="sd">        kwargs: keyword arguments are passed to plt.figure if ax is not None.</span>
+<span class="sd">    If `ax` is `None`, we build the `matplotlib` figure and create the `Axes`.</span>
+<span class="sd">    Else we return the current active figure.</span>
 
-<span class="sd">      Returns:</span>
-<span class="sd">        ax: :class:`Axes` object</span>
-<span class="sd">        figure: matplotlib figure</span>
-<span class="sd">        plt: matplotlib pyplot module.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ax : object</span>
+<span class="sd">        `Axes` object. Defaults to `None`.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Keyword arguments are passed to `plt.figure` if `ax` is not `None`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ax : object</span>
+<span class="sd">        `Axes` object.</span>
+<span class="sd">    figure : object</span>
+<span class="sd">        `matplotlib` figure.</span>
+<span class="sd">    plt : object</span>
+<span class="sd">        `matplotlib.pyplot` module.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -199,6 +208,10 @@
 
     <span class="c1"># Add docstring to the decorated method.</span>
     <span class="n">doc_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\n\n</span>
+
+<span class="s2">        notes</span>
+<span class="s2">        -----</span>
+<span class="s2">    </span>
 <span class="s2">        Keyword arguments controlling the display of the figure:</span>
 
 <span class="s2">        ================  ====================================================</span>
@@ -218,7 +231,7 @@
 <span class="s2">        ================  ====================================================</span>
 
 <span class="s2">&quot;&quot;&quot;</span>
-
+        
     <span class="k">if</span> <span class="n">wrapper</span><span class="o">.</span><span class="vm">__doc__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Add s at the end of the docstring.</span>
         <span class="n">wrapper</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{</span><span class="n">doc_str</span><span class="si">}</span><span class="s1">&#39;</span>

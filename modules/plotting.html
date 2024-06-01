@@ -16,7 +16,7 @@
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=01f34227"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -52,8 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="distributions.html">Distributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Plotting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#xarpes.plotting.add_fig_kwargs"><code class="docutils literal notranslate"><span class="pre">add_fig_kwargs()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#xarpes.plotting.get_ax_fig_plt"><code class="docutils literal notranslate"><span class="pre">get_ax_fig_plt()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xarpes.plotting.add_fig_kwargs"><code class="docutils literal notranslate"><span class="pre">add_fig_kwargs()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -86,35 +86,41 @@
 <span id="plotting"></span><h1>Plotting<a class="headerlink" href="#module-xarpes.plotting" title="Link to this heading"></a></h1>
 <p>Functions related to plotting.</p>
 <dl class="py function">
+<dt class="sig sig-object py" id="xarpes.plotting.get_ax_fig_plt">
+<span class="sig-prename descclassname"><span class="pre">xarpes.plotting.</span></span><span class="sig-name descname"><span class="pre">get_ax_fig_plt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/plotting.html#get_ax_fig_plt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.plotting.get_ax_fig_plt" title="Link to this definition"></a></dt>
+<dd><p>Helper function used in plot functions supporting an optional <cite>Axes</cite>
+argument.</p>
+<p>If <cite>ax</cite> is <cite>None</cite>, we build the <cite>matplotlib</cite> figure and create the <cite>Axes</cite>.
+Else we return the current active figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ax</strong><span class="classifier">object</span></dt><dd><p><cite>Axes</cite> object. Defaults to <cite>None</cite>.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments are passed to <cite>plt.figure</cite> if <cite>ax</cite> is not <cite>None</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>ax</strong><span class="classifier">object</span></dt><dd><p><cite>Axes</cite> object.</p>
+</dd>
+<dt><strong>figure</strong><span class="classifier">object</span></dt><dd><p><cite>matplotlib</cite> figure.</p>
+</dd>
+<dt><strong>plt</strong><span class="classifier">object</span></dt><dd><p><cite>matplotlib.pyplot</cite> module.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="xarpes.plotting.add_fig_kwargs">
 <span class="sig-prename descclassname"><span class="pre">xarpes.plotting.</span></span><span class="sig-name descname"><span class="pre">add_fig_kwargs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/plotting.html#add_fig_kwargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.plotting.add_fig_kwargs" title="Link to this definition"></a></dt>
 <dd><p>Decorator that adds keyword arguments for functions returning matplotlib
 figures.</p>
 <p>The function should return either a matplotlib figure or None to signal
 some sort of error/unexpected event.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="xarpes.plotting.get_ax_fig_plt">
-<span class="sig-prename descclassname"><span class="pre">xarpes.plotting.</span></span><span class="sig-name descname"><span class="pre">get_ax_fig_plt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/plotting.html#get_ax_fig_plt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.plotting.get_ax_fig_plt" title="Link to this definition"></a></dt>
-<dd><p>Helper function used in plot functions supporting an optional Axes
-argument. If ax is None, we build the <cite>matplotlib</cite> figure and create the
-Axes else. We return the current active figure.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ax</strong> (<em>Axes</em><em>, </em><em>optional</em>) – Axes object. Defaults to None.</p></li>
-<li><p><strong>kwargs</strong> – <p>keyword arguments are passed to plt.figure if ax is not None.</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>ax: <code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code> object
-figure: matplotlib figure
-plt: matplotlib pyplot module.</p>
-</dd>
-</dl>
-</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 </section>

@@ -16,7 +16,7 @@
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=01f34227"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -51,9 +51,9 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Band map</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#xarpes.band_map.band_map"><code class="docutils literal notranslate"><span class="pre">band_map</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#xarpes.band_map.band_map.fit_fermi_edge"><code class="docutils literal notranslate"><span class="pre">band_map.fit_fermi_edge()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xarpes.band_map.band_map.hnuminphi"><code class="docutils literal notranslate"><span class="pre">band_map.hnuminphi</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xarpes.band_map.band_map.shift_angles"><code class="docutils literal notranslate"><span class="pre">band_map.shift_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xarpes.band_map.band_map.fit_fermi_edge"><code class="docutils literal notranslate"><span class="pre">band_map.fit_fermi_edge()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -96,40 +96,97 @@
 <dd><p>Class for the band map from the ARPES experiment.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>intensities</strong> (<em>ndarray</em>) – 2D array of counts for given (E,k) or (E,angle) pairs [counts]</p></li>
-<li><p><strong>angles</strong> (<em>ndarray</em>) – 1D array of angular values for the abscissa [degrees]</p></li>
-<li><p><strong>ekin</strong> (<em>ndarray</em>) – 1D array of kinetic energy values for the ordinate [eV]</p></li>
-<li><p><strong>energy_resolution</strong> (<em>float</em>) – Energy resolution of the detector [eV]</p></li>
-<li><p><strong>temperature</strong> (<em>float</em>) – Temperature of the sample [K]</p></li>
-<li><p><strong>hnuminphi</strong> (<em>float</em>) – Kinetic energy minus the work function [eV]</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>intensities</strong><span class="classifier">ndarray</span></dt><dd><p>2D array of counts for given (E,k) or (E,angle) pairs [counts]</p>
+</dd>
+<dt><strong>angles</strong><span class="classifier">ndarray</span></dt><dd><p>1D array of angular values for the abscissa [degrees]</p>
+</dd>
+<dt><strong>ekin</strong><span class="classifier">ndarray</span></dt><dd><p>1D array of kinetic energy values for the ordinate [eV]</p>
+</dd>
+<dt><strong>energy_resolution</strong><span class="classifier">float</span></dt><dd><p>Energy resolution of the detector [eV]</p>
+</dd>
+<dt><strong>temperature</strong><span class="classifier">float, None</span></dt><dd><p>Temperature of the sample [K]</p>
+</dd>
+<dt><strong>hnuminphi</strong><span class="classifier">float, None</span></dt><dd><p>Kinetic energy minus the work function [eV]</p>
 </dd>
 </dl>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="xarpes.band_map.band_map.hnuminphi">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hnuminphi</span></span><a class="headerlink" href="#xarpes.band_map.band_map.hnuminphi" title="Link to this definition"></a></dt>
+<dd><p>Returns the photon energy minus the work function in eV if it has
+been set, either during instantiation, with the setter, or by fitting
+the Fermi-Dirac distribution to the integrated weight.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>hnuminphi</strong><span class="classifier">float, None</span></dt><dd><p>Kinetic energy minus the work function [eV]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xarpes.band_map.band_map.shift_angles">
+<span class="sig-name descname"><span class="pre">shift_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shift</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/band_map.html#band_map.shift_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.band_map.band_map.shift_angles" title="Link to this definition"></a></dt>
+<dd><p>Shifts the angles by the specified amount in degrees. Used to shift
+from the detector angle to the material angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>shift</strong><span class="classifier">float</span></dt><dd><p>Angular shift [degrees]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="xarpes.band_map.band_map.fit_fermi_edge">
 <span class="sig-name descname"><span class="pre">fit_fermi_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hnuminphi_guess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integrated_weight_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ekin_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ekin_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/band_map.html#band_map.fit_fermi_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.band_map.band_map.fit_fermi_edge" title="Link to this definition"></a></dt>
-<dd><p>Fits the Fermi edge of the band map and plots the result.</p>
+<dd><p>Fits the Fermi edge of the band map and plots the result.
+Also sets hnuminphi, the kinetic energy minus the work function in eV.
+The fitting includes an energy convolution with an abscissa range
+expanded by 5 times the energy resolution standard deviation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>hnuminphi_guess</strong> (<em>float</em>) – Initial guess for kinetic energy minus the work function [eV]</p></li>
-<li><p><strong>background_guess</strong> (<em>float</em>) – Initial guess for background intensity [counts]</p></li>
-<li><p><strong>integrated_weight_guess</strong> (<em>float</em>) – Initial guess for integrated spectral intensity [counts]</p></li>
-<li><p><strong>angle_min</strong> (<em>float</em>) – Minimum angle of integration interval [degrees]</p></li>
-<li><p><strong>angle_max</strong> (<em>float</em>) – Maximum angle of integration interval [degrees]</p></li>
-<li><p><strong>ekin_min</strong> (<em>float</em>) – Minimum kinetic energy of integration interval [eV]</p></li>
-<li><p><strong>ekin_max</strong> (<em>float</em>) – Maximum kinetic energy of integration interval [eV]</p></li>
-<li><p><strong>ax</strong> (<em>Matplotlib-Axes / NoneType</em>) – Axis for plotting the Fermi edge on. Created if not provided by
-the user.</p></li>
-<li><p><strong>**kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional arguments passed on to add_fig_kwargs. See the keyword
-table below.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>hnuminphi_guess</strong><span class="classifier">float</span></dt><dd><p>Initial guess for kinetic energy minus the work function [eV]</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Matplotlib-Figure</p>
+<dt><strong>background_guess</strong><span class="classifier">float</span></dt><dd><p>Initial guess for background intensity [counts]</p>
+</dd>
+<dt><strong>integrated_weight_guess</strong><span class="classifier">float</span></dt><dd><p>Initial guess for integrated spectral intensity [counts]</p>
+</dd>
+<dt><strong>angle_min</strong><span class="classifier">float</span></dt><dd><p>Minimum angle of integration interval [degrees]</p>
+</dd>
+<dt><strong>angle_max</strong><span class="classifier">float</span></dt><dd><p>Maximum angle of integration interval [degrees]</p>
+</dd>
+<dt><strong>ekin_min</strong><span class="classifier">float</span></dt><dd><p>Minimum kinetic energy of integration interval [eV]</p>
+</dd>
+<dt><strong>ekin_max</strong><span class="classifier">float</span></dt><dd><p>Maximum kinetic energy of integration interval [eV]</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier">Matplotlib-Axes / NoneType</span></dt><dd><p>Axis for plotting the Fermi edge on. Created if not provided by
+the user.</p>
 </dd>
 </dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fig</strong><span class="classifier">Matplotlib-Figure</span></dt><dd><p>Figure containing the Fermi edge fit</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Other Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>Additional arguments passed on to add_fig_kwargs. See the keyword
+table below.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
 <p>Keyword arguments controlling the display of the figure:</p>
 <table class="docutils align-default">
 <thead>
@@ -167,32 +224,6 @@ Default: False</p></td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="xarpes.band_map.band_map.hnuminphi">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hnuminphi</span></span><a class="headerlink" href="#xarpes.band_map.band_map.hnuminphi" title="Link to this definition"></a></dt>
-<dd><p>Returns the photon energy minus the work function in eV.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>hnuminphi</strong> – Kinetic energy minus the work function [eV]</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="xarpes.band_map.band_map.shift_angles">
-<span class="sig-name descname"><span class="pre">shift_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shift</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/band_map.html#band_map.shift_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.band_map.band_map.shift_angles" title="Link to this definition"></a></dt>
-<dd><p>Shifts the angles by the specified amount in degrees. Used to shift
-from the detector angle to the material angle.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>shift</strong> (<em>float</em>) – Angular shift [degrees]</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
