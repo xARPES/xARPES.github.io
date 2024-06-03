@@ -78,7 +78,7 @@
              
   <h1>Source code for xarpes.plotting</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Copyright (C) 2024 xARPES Developers</span>
-<span class="c1"># This program is free software under the terms of the GNU GPLv2 license.</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 license.</span>
 
 <span class="c1"># get_ax_fig_plt and add_fig_kwargs originate from pymatgen/util/plotting.py.</span>
 <span class="c1"># Copyright (C) 2011-2024 Shyue Ping Ong and the pymatgen Development Team</span>
@@ -104,7 +104,6 @@
     <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.minor.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.major.width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.8</span>
     <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
-
 
 <div class="viewcode-block" id="get_ax_fig_plt">
 <a class="viewcode-back" href="../../modules/plotting.html#xarpes.plotting.get_ax_fig_plt">[docs]</a>
@@ -138,7 +137,6 @@
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">plt</span></div>
-
 
 
 <div class="viewcode-block" id="add_fig_kwargs">
@@ -211,7 +209,7 @@
 
 <span class="s2">        notes</span>
 <span class="s2">        -----</span>
-<span class="s2">    </span>
+
 <span class="s2">        Keyword arguments controlling the display of the figure:</span>
 
 <span class="s2">        ================  ====================================================</span>
@@ -223,7 +221,8 @@
 <span class="s2">        size_kwargs       Dictionary with options passed to fig.set_size_inches</span>
 <span class="s2">                          e.g. size_kwargs=dict(w=3, h=4)</span>
 <span class="s2">        tight_layout      True to call fig.tight_layout (default: False)</span>
-<span class="s2">        ax_grid           True (False) to add (remove) grid from all axes in fig.</span>
+<span class="s2">        ax_grid           True (False) to add (remove) grid from all axes in</span>
+<span class="s2">                          fig.</span>
 <span class="s2">                          Default: None i.e. fig is left unchanged.</span>
 <span class="s2">        ax_annotate       Add labels to  subplots e.g. (a), (b).</span>
 <span class="s2">                          Default: False</span>
@@ -231,7 +230,7 @@
 <span class="s2">        ================  ====================================================</span>
 
 <span class="s2">&quot;&quot;&quot;</span>
-        
+
     <span class="k">if</span> <span class="n">wrapper</span><span class="o">.</span><span class="vm">__doc__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Add s at the end of the docstring.</span>
         <span class="n">wrapper</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{</span><span class="n">doc_str</span><span class="si">}</span><span class="s1">&#39;</span>

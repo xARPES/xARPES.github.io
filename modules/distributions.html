@@ -113,7 +113,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="xarpes.distributions.distribution">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xarpes.distributions.</span></span><span class="sig-name descname"><span class="pre">distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.distribution" title="Link to this definition"></a></dt>
-<dd><p>Parent class for distributions. The class cannot be used on its own, 
+<dd><p>Parent class for distributions. The class cannot be used on its own,
 but is used to instantiate unique and non-unique distributions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -130,7 +130,8 @@ but is used to instantiate unique and non-unique distributions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Non-unique name for instances, not to be modified after instantiation.</p>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Non-unique name for instances, not to be modified after
+instantiation.</p>
 </dd>
 </dl>
 </dd>
@@ -289,15 +290,15 @@ The constant class is unique, only one instance should be used per task.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="xarpes.distributions.fermi_dirac">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xarpes.distributions.</span></span><span class="sig-name descname"><span class="pre">fermi_dirac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hnuminphi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integrated_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fermi_dirac'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/distributions.html#fermi_dirac"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.distributions.fermi_dirac" title="Link to this definition"></a></dt>
-<dd><p>Child class for Fermi-Dirac (FD) distributions, used e.g., during Fermi edge
-fitting. The FD class is unique, only one instance should be used
+<dd><p>Child class for Fermi-Dirac (FD) distributions, used e.g., during Fermi
+edge fitting. The FD class is unique, only one instance should be used
 per task.</p>
 <p>The Fermi-Dirac distribution is described by the following formula:</p>
 <div class="math notranslate nohighlight">
 \[\frac{A}{\rm{e}^{\beta(E_{\rm{kin}}-(h\nu-\Phi))}+1} + B\]</div>
-<p>with <span class="math notranslate nohighlight">\(A\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">integrated_weight</span></code>, <span class="math notranslate nohighlight">\(B\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">background</span></code>,
-<span class="math notranslate nohighlight">\(h\nu-\Phi\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">hnuminphi</span></code>, and <span class="math notranslate nohighlight">\(\beta=1/(k_{\rm{B}}T)\)</span> with
-<span class="math notranslate nohighlight">\(T\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">temperature</span></code>.</p>
+<p>with <span class="math notranslate nohighlight">\(A\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">integrated_weight</span></code>, <span class="math notranslate nohighlight">\(B\)</span> as
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">background</span></code>, <span class="math notranslate nohighlight">\(h\nu-\Phi\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">hnuminphi</span></code>, and
+<span class="math notranslate nohighlight">\(\beta=1/(k_{\rm{B}}T)\)</span> with <span class="math notranslate nohighlight">\(T\)</span> as <code class="xref py py-attr docutils literal notranslate"><span class="pre">temperature</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">

@@ -52,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="band_map.html">Band map</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distributions.html">Distributions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xarpes.functions.download_examples"><code class="docutils literal notranslate"><span class="pre">download_examples()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#xarpes.functions.error_function"><code class="docutils literal notranslate"><span class="pre">error_function()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#xarpes.functions.fit_leastsq"><code class="docutils literal notranslate"><span class="pre">fit_leastsq()</span></code></a></li>
 </ul>
@@ -85,7 +86,22 @@
              
   <section id="module-xarpes.functions">
 <span id="functions"></span><h1>Functions<a class="headerlink" href="#module-xarpes.functions" title="Link to this heading"></a></h1>
-<p>Separate functions used in conjunction with various classes.</p>
+<p>Separate functions mostly used in conjunction with various classes.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="xarpes.functions.download_examples">
+<span class="sig-prename descclassname"><span class="pre">xarpes.functions.</span></span><span class="sig-name descname"><span class="pre">download_examples</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/functions.html#download_examples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.functions.download_examples" title="Link to this definition"></a></dt>
+<dd><p>Downloads the examples folder from the xARPES code only if it does not
+already exist. Prints executed steps and a final cleanup/failure message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>0, 1</strong><span class="classifier">int</span></dt><dd><p>Returns 0 if the execution succeeds, 1 if it fails.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="xarpes.functions.error_function">
 <span class="sig-prename descclassname"><span class="pre">xarpes.functions.</span></span><span class="sig-name descname"><span class="pre">error_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ydata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/xarpes/functions.html#error_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xarpes.functions.error_function" title="Link to this definition"></a></dt>
@@ -107,7 +123,8 @@
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>residual</dt><dd></dd>
+<dt>residual</dt><dd><p>Residual between evaluated function and ydata</p>
+</dd>
 </dl>
 </dd>
 </dl>

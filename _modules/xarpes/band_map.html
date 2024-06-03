@@ -78,7 +78,7 @@
              
   <h1>Source code for xarpes.band_map</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Copyright (C) 2024 xARPES Developers</span>
-<span class="c1"># This program is free software under the terms of the GNU GPLv2 license.</span>
+<span class="c1"># This program is free software under the terms of the GNU GPLv3 license.</span>
 
 <span class="c1"># get_ax_fig_plt and add_fig_kwargs originate from pymatgen/util/plotting.py.</span>
 <span class="c1"># Copyright (C) 2011-2024 Shyue Ping Ong and the pymatgen Development Team</span>
@@ -93,7 +93,6 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">.plotting</span> <span class="kn">import</span> <span class="n">get_ax_fig_plt</span><span class="p">,</span> <span class="n">add_fig_kwargs</span>
 <span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">fermi_dirac</span>
-
 
 <div class="viewcode-block" id="band_map">
 <a class="viewcode-back" href="../../modules/band_map.html#xarpes.band_map.band_map">[docs]</a>
@@ -113,17 +112,19 @@
 <span class="sd">    temperature : float, None</span>
 <span class="sd">        Temperature of the sample [K]</span>
 <span class="sd">    hnuminphi : float, None</span>
-<span class="sd">        Kinetic energy minus the work function [eV]      </span>
+<span class="sd">        Kinetic energy minus the work function [eV]</span>
+<span class="sd">    hnuminphi_std : float, None</span>
+<span class="sd">        Standard deviation of kinetic energy minus work function [eV]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intensities</span><span class="p">,</span> <span class="n">angles</span><span class="p">,</span> <span class="n">ekin</span><span class="p">,</span> <span class="n">energy_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">temperature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hnuminphi</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-
+                 <span class="n">temperature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hnuminphi</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hnuminphi_std</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">intensities</span> <span class="o">=</span> <span class="n">intensities</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">angles</span> <span class="o">=</span> <span class="n">angles</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ekin</span> <span class="o">=</span> <span class="n">ekin</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">energy_resolution</span> <span class="o">=</span> <span class="n">energy_resolution</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">temperature</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hnuminphi</span> <span class="o">=</span> <span class="n">hnuminphi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hnuminphi_std</span> <span class="o">=</span> <span class="n">hnuminphi_std</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">hnuminphi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -133,7 +134,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        hnuminphi : float, None </span>
+<span class="sd">        hnuminphi : float, None</span>
 <span class="sd">            Kinetic energy minus the work function [eV]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi</span>
@@ -148,7 +149,31 @@
 <span class="sd">        hnuminphi : float, None</span>
 <span class="sd">            Kinetic energy minus the work function [eV]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi</span> <span class="o">=</span> <span class="n">hnuminphi</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi</span> <span class="o">=</span> <span class="n">hnuminphi</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">hnuminphi_std</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns standard deviation of the photon energy minus the work</span>
+<span class="sd">        function in eV.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        hnuminphi_std : float</span>
+<span class="sd">            Standard deviation of energy minus the work function [eV]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi_std</span>
+
+    <span class="nd">@hnuminphi_std</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">hnuminphi_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hnuminphi_std</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Manually sets the standard deviation of photon energy minus the</span>
+<span class="sd">        work function in eV.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        hnuminphi_std : float</span>
+<span class="sd">            Standard deviation of energy minus the work function [eV]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hnuminphi_std</span> <span class="o">=</span> <span class="n">hnuminphi_std</span>
 
 <div class="viewcode-block" id="band_map.shift_angles">
 <a class="viewcode-back" href="../../modules/band_map.html#xarpes.band_map.band_map.shift_angles">[docs]</a>
@@ -199,7 +224,7 @@
 <span class="sd">            the user.</span>
 
 <span class="sd">        Other parameters</span>
-<span class="sd">        ----------------   </span>
+<span class="sd">        ----------------</span>
 <span class="sd">        **kwargs : dict, optional</span>
 <span class="sd">            Additional arguments passed on to add_fig_kwargs. See the keyword</span>
 <span class="sd">            table below.</span>
@@ -207,8 +232,8 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        fig : Matplotlib-Figure</span>
-<span class="sd">            Figure containing the Fermi edge fit            </span>
-<span class="sd">        &quot;&quot;&quot;</span>        
+<span class="sd">            Figure containing the Fermi edge fit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">xarpes.functions</span> <span class="kn">import</span> <span class="n">fit_leastsq</span>
 
         <span class="n">ax</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">plt</span> <span class="o">=</span> <span class="n">get_ax_fig_plt</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -245,6 +270,7 @@
                                  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Fitted result&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">hnuminphi</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hnuminphi_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">pcov</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$E_{\mathrm</span><span class="si">{kin}</span><span class="s1">}$ (-)&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Counts (-)&#39;</span><span class="p">)</span>
